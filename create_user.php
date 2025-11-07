@@ -25,12 +25,12 @@ if(isset($_POST['crear'])){
         array_unshift($userData, $id);
         array_push($userData, date('d/M/Y'));
         
-        putDataInCSV($userData, './data/users.csv');
+        putDataInCSV([$userData], './data/users.csv');
 
         //TODO: Crear funciones que permitan gestionar esto con una sola llamada
         clearFileContent('./data/last_id.csv');
-        putDataInCSV(['id'], './data/last_id.csv');
-        putDataInCSV([$id], './data/last_id.csv');
+        putDataInCSV([['id'],[$id]], './data/last_id.csv');
+        
 
         $mensaje= 'Usuario creado';
     }

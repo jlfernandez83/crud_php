@@ -40,9 +40,19 @@ function getDataFromCSV($ruta){
     }
     
 }
-function putDataInCSV($data, $ruta){
+function putDataInCSV($data, $ruta){ 
     if($handler = fopen($ruta, 'a')){
-        return fputcsv($handler,$data);
+        $tamanoTotal = 0;
+        foreach($data as $rowData){
+            $tamano = fputcsv($handler,$rowData);
+            if($tamano === FALSE){
+                fclose($handler);
+                return false;
+            }
+            $tamanoTotal += $tamano;
+        }
+        fclose($handler);
+        return $tamanoTotal;
     }else{
         return null;
     }
