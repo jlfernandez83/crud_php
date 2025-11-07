@@ -5,8 +5,26 @@ function boot(){
     error_reporting(E_ALL); 
 }
 
+function dumpObjectStructure($obj){
+    if(is_object($obj)){
+        echo 'ESTRUCTURA OBJETO';
+        $rco = new ReflectionClass($obj);
+        $structure = [
+            'atributos' => $rco->getProperties(),
+            'metodos' => $rco->getMethods()
+        ];
+        echo '<pre>'.print_r($structure,true).'</pre>';
+    }else{
+        echo "La variable no es un objeto";
+    }
+}
 function dump($var){
     echo '<pre>'.print_r($var,true).'</pre>';
+}
+
+function clearFileContent($ruta){
+    $fhandler = fopen($ruta, 'w');
+    fclose($fhandler);
 }
 
 function getDataFromCSV($ruta){
