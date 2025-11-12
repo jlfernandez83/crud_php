@@ -27,13 +27,24 @@ function clearFileContent($ruta){
     fclose($fhandler);
 }
 
-function getDataFromCSV($ruta){
+function getDataFromCSV($ruta, $campoId = ''){
     $data = array();
     if($handler = fopen($ruta, 'r')){
         $cabeceras = fgetcsv($handler, 1000, ",");
-        while (($lineData = fgetcsv($handler, 1000, ",")) !== FALSE) {
-            $data[] = array_combine($cabeceras,$lineData);
+        if(!empty($campoId)){
+            $campoIndex = array_search($campoId,$cabeceras);
+        }else{
+            $campoIndex = null;
         }
+        while (($lineData = fgetcsv($handler, 1000, ",")) !== FALSE) {
+            if(isset($campoIndex)){
+                $data[$lineData[$campoIndex]] = array_combine($cabeceras,$lineData);
+
+            }else{
+                $data[] = array_combine($cabeceras,$lineData);
+            }
+        }
+        fclose($handler);
         return $data;
     }else{
         return null;

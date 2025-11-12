@@ -1,4 +1,4 @@
 id,nombre,email,rol,fecha_alta
-1,"<script>window.location.href='https://www.google.es'</script>","El chocolatero","chocolatero",12/12/2025
+1,"<script>alert('hola mundo');</script>","El chocolatero","chocolatero",12/12/2025
 2,"Manolito","El ferretero","ferretero",12/11/2024
 4,"otro nombre",laksjdlaksjd@aksjd.es,admin,07/Nov/2025
