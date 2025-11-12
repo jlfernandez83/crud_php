@@ -24,6 +24,7 @@ if((isset($id))&&( $id !== false )){
         //Actualizo el usuario
         //TODO Terminar esto
     }
+    }
     //Lee CSV
     $usuarios = getDataFromCSV('./data/users.csv', 'id');
     if (isset($usuarios[$id])){
